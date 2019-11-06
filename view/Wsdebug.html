@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket_Debug for hyperf</title>
+</head>
+<body>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div id="msg"></div>
+<a href="javascript:void(0)" onclick="clearLog()" id="clear_action">清空</a>
+<a href="javascript:void(0)" onclick="font_add()" id="add">+</a>
+<a href="javascript:void(0)" onclick="font_dec()" id="dec">-</a>
+</body>
+<style>
+    #add{
+        position: fixed;
+        bottom: 20px;
+        right: 90px;
+        color: #fff;
+        text-decoration: none;
+        background-color: #131312;
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        border-radius: 10em;
+        border: 1px solid #0d0d0d;
+    }
+    #dec{
+        position: fixed;
+        bottom: 20px;
+        right: 160px;
+        color: #fff;
+        text-decoration: none;
+        background-color: #131312;
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        border-radius: 10em;
+        border: 1px solid #0d0d0d;
+    }
+    #clear_action{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        color: #fff;
+        text-decoration: none;
+        background-color: #131312;
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        border-radius: 10em;
+        border: 1px solid #0d0d0d;
+    }
+    body{font-size:16px;background-color:#272822;color:#fff;padding:20px 20px;}
+    #log-container{word-wrap: break-word;}
+    .hide{display:none}
+    .row{margin:5px 0}
+    .row .font{display:inline}
+    .row textarea{width:100%;}
+    .row em{font-style:normal;color:#8F908A;margin-right:20px;}
+    .row_extend{display: inline-block;}
+    .btn{    color: #fff;
+        background-color: #521818;
+        border: 1px solid #000;}
+    .SESSION{color:#00ffd0}
+    .LANG,.CACHE,.RUN{}
+    .EMERG{ color:red;}
+    .error{ color:#b99090;}
+    .sql{color:#438646}
+    .ALERT{color:red;}
+    .CRIT{color:red}
+    .ERR{color:red}
+    .WARN{color:yellow}
+    .NOTIC{color:#E6DB74}
+    .INFO{color:#5a5a5a}
+    .DEBUG{color:#3f0;}
+    .SQL,.DB{color:#878a00}
+    .TIME{color:#329fff;padding-top:10px;border-top:7px solid #4B922E}
+    .copyright{color: #52D9B1;text-align: center;display: block;text-decoration: none;margin:50px 0}
+    .intro p{ color:#8F908A;}
+    .intro a{color: #52D9B1;text-decoration: none;}
+    .CLIENT_TRACE{}
+    .HEADER{}
+    .GET{}
+    .POST{}
+    .jsonview{font-family:monospace;font-size:14px;white-space:pre-wrap}.jsonview .prop{font-weight:400;text-decoration:none;color:#379325}.jsonview .null,.jsonview .undefined{color:red}.jsonview .bool,.jsonview .num{color:#33ff00}.jsonview .string{color:#fff;white-space:pre-wrap}.jsonview .string.multiline{display:inline-block;vertical-align:text-top}.jsonview .collapser{position:absolute;left:-1em;cursor:pointer}.jsonview .collapsible{transition:height 1.2s;transition:width 1.2s}.jsonview .collapsible.collapsed{height:.8em;width:1em;display:inline-block;overflow:hidden;margin:0}.jsonview .collapsible.collapsed:before{content:"…";width:1em;margin-left:.2em}.jsonview .collapser.collapsed{transform:rotate(0)}.jsonview .q{display:inline-block;width:0;color:transparent}.jsonview li{position:relative}.jsonview li a{color:#33ff00}.jsonview ul{list-style:none;margin:0 0 0 2em;padding:0}.jsonview h1{font-size:1.2em}</style>
+<script>!function(e){var t,n,r,l,o;return o=["object","array","number","string","boolean","null"],r=function(){function t(e){null==e&&(e={}),this.options=e}return t.prototype.htmlEncode=function(e){return null!==e?e.toString().replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;"):""},t.prototype.jsString=function(e){return e=JSON.stringify(e).slice(1,-1),this.htmlEncode(e)},t.prototype.decorateWithSpan=function(e,t){return'<span class="'+t+'">'+this.htmlEncode(e)+"</span>"},t.prototype.valueToHTML=function(t,n){var r;if(null==n&&(n=0),r=Object.prototype.toString.call(t).match(/\s(.+)]/)[1].toLowerCase(),this.options.strict&&!e.inArray(r,o))throw new Error(""+r+" is not a valid JSON value type");return this[""+r+"ToHTML"].call(this,t,n)},t.prototype.nullToHTML=function(e){return this.decorateWithSpan("null","null")},t.prototype.undefinedToHTML=function(){return this.decorateWithSpan("undefined","undefined")},t.prototype.numberToHTML=function(e){return this.decorateWithSpan(e,"num")},t.prototype.stringToHTML=function(e){var t,n;return/^(http|https|file):\/\/[^\s]+$/i.test(e)?'<a href="'+this.htmlEncode(e)+'"><span class="q">"</span>'+this.jsString(e)+'<span class="q">"</span></a>':(t="",e=this.jsString(e),this.options.nl2br&&(n=/([^>\\r\\n]?)(\\r\\n|\\n\\r|\\r|\\n)/g,n.test(e)&&(t=" multiline",e=(e+"").replace(n,"$1<br />"))),'<span class="string'+t+'">"'+e+'"</span>')},t.prototype.booleanToHTML=function(e){return this.decorateWithSpan(e,"bool")},t.prototype.arrayToHTML=function(e,t){var n,r,l,o,i,s,a,p;for(null==t&&(t=0),r=!1,i="",o=e.length,l=a=0,p=e.length;p>a;l=++a)s=e[l],r=!0,i+="<li>"+this.valueToHTML(s,t+1),o>1&&(i+=","),i+="</li>",o--;return r?(n=0===t?"":" collapsible",'[<ul class="array level'+t+n+'">'+i+"</ul>]"):"[ ]"},t.prototype.objectToHTML=function(e,t){var n,r,l,o,i,s,a;null==t&&(t=0),r=!1,i="",o=0;for(s in e)o++;for(s in e)a=e[s],r=!0,l=this.options.escape?this.jsString(s):s,i+='<li><a class="prop" href="javascript:;"><span class="q">"</span>'+l+'<span class="q">"</span></a>: '+this.valueToHTML(a,t+1),o>1&&(i+=","),i+="</li>",o--;return r?(n=0===t?"":" collapsible",'{<ul class="obj level'+t+n+'">'+i+"</ul>}"):"{ }"},t.prototype.jsonToHTML=function(e){return'<div class="jsonview">'+this.valueToHTML(e)+"</div>"},t}(),"undefined"!=typeof module&&null!==module&&(module.exports=r),n=function(){function e(){}return e.bindEvent=function(e,t){var n;return e.firstChild.addEventListener("click",function(e){return function(n){return e.toggle(n.target.parentNode.firstChild,t)}}(this)),n=document.createElement("div"),n.className="collapser",n.innerHTML=t.collapsed?"+":"-",n.addEventListener("click",function(e){return function(n){return e.toggle(n.target,t)}}(this)),e.insertBefore(n,e.firstChild),t.collapsed?this.collapse(n):void 0},e.expand=function(e){var t,n;return n=this.collapseTarget(e),""!==n.style.display?(t=n.parentNode.getElementsByClassName("ellipsis")[0],n.parentNode.removeChild(t),n.style.display="",e.innerHTML="-"):void 0},e.collapse=function(e){var t,n;return n=this.collapseTarget(e),"none"!==n.style.display?(n.style.display="none",t=document.createElement("span"),t.className="ellipsis",t.innerHTML=" &hellip; ",n.parentNode.insertBefore(t,n),e.innerHTML="+"):void 0},e.toggle=function(e,t){var n,r,l,o,i,s;if(null==t&&(t={}),l=this.collapseTarget(e),n="none"===l.style.display?"expand":"collapse",t.recursive_collapser){for(r=e.parentNode.getElementsByClassName("collapser"),s=[],o=0,i=r.length;i>o;o++)e=r[o],s.push(this[n](e));return s}return this[n](e)},e.collapseTarget=function(e){var t,n;return n=e.parentNode.getElementsByClassName("collapsible"),n.length?t=n[0]:void 0},e}(),t=e,l={collapse:function(e){return"-"===e.innerHTML?n.collapse(e):void 0},expand:function(e){return"+"===e.innerHTML?n.expand(e):void 0},toggle:function(e){return n.toggle(e)}},t.fn.JSONView=function(){var e,o,i,s,a,p,c;return e=arguments,null!=l[e[0]]?(a=e[0],this.each(function(){var n,r;return n=t(this),null!=e[1]?(r=e[1],n.find(".jsonview .collapsible.level"+r).siblings(".collapser").each(function(){return l[a](this)})):n.find(".jsonview > ul > li .collapsible").siblings(".collapser").each(function(){return l[a](this)})})):(s=e[0],p=e[1]||{},o={collapsed:!1,nl2br:!1,recursive_collapser:!1,escape:!0,strict:!1},p=t.extend(o,p),i=new r(p),"[object String]"===Object.prototype.toString.call(s)&&(s=JSON.parse(s)),c=i.jsonToHTML(s),this.each(function(){var e,r,l,o,i,s;for(e=t(this),e.html(c),l=e[0].getElementsByClassName("collapsible"),s=[],o=0,i=l.length;i>o;o++)r=l[o],"LI"===r.parentNode.nodeName?s.push(n.bindEvent(r.parentNode,p)):s.push(void 0);return s}))}}(jQuery);</script>
+<script>
+    function clearLog(){
+        $("#msg").html('');
+    }
+
+    var line_num = 0;
+    var wsServer = "{{wshost}}";
+    var socket;
+    var socketState = {
+        isConnection : false
+    };
+    var initWebSocket = function() {
+        if (window.WebSocket) {
+            socket = new WebSocket(wsServer);
+            socket.onopen = function(event) {
+                socketState.isConnection = true;
+            };
+            socket.onmessage = function(event) {
+                var style =  '';
+                var data = JSON.parse(event.data);
+                if(data.type !== 'pong' ){
+                    if(typeof(data.type) === "undefined" || data.type === "error"){
+                        style = 'color:red';
+                    }
+                    log($("<div class='log' style='"+style+"'></div>").JSONView(event.data,{ collapsed: false }));
+                    log("<div class='line_num'>第 "+line_num+" 行</div>");
+                    line_num ++ ;
+                }
+                if(data.type === 'pong' ){
+                    console.log("保持心跳");
+                }
+            };
+            socket.onclose = function(event) {
+                socketState.isConnection = false;
+                log("<p>已断开</p>");
+            };
+            socket.onerror = function(event) {
+                log($("<div class='log'>" + evt.data + "</div>"));
+            };
+        } else {
+            log("你的浏览器不支持WebSocket.");
+        }
+    }
+
+    function log(msg){
+        $('#msg').prepend(msg);
+    }
+
+    initWebSocket();
+
+    function font_add() {
+        $('.jsonview').css('font-size',parseFloat($('.jsonview').css('font-size'))+2);
+        $('.line_num').css('font-size',parseFloat($('.line_num').css('font-size'))+2);
+    }
+
+    function font_dec() {
+        $('.jsonview').css('font-size',parseFloat($('.jsonview').css('font-size'))-2);
+        $('.line_num').css('font-size',parseFloat($('.line_num').css('font-size'))-2);
+    }
+
+    setInterval(function(){
+        if(socketState.isConnection !== true){
+            initWebSocket();
+            log("<p>正在尝试重链...</p>");
+        }
+        socket.send("pong");
+    },3000);
+</script>
+</html>

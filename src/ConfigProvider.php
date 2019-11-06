@@ -28,6 +28,14 @@ class ConfigProvider
                     ],
                 ],
             ],
+            'publish' => [
+                [
+                    'id' => 'config',
+                    'description' => 'The config for wsdebug.',
+                    'source' => __DIR__ . '/publish/wsdebug.php',
+                    'destination' => BASE_PATH . '/config/autoload/wsdebug.php',
+                ],
+            ],
         ];
     }
 }
