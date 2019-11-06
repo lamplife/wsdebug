@@ -71,7 +71,7 @@ class TestContrller
 >访问调试地址
 http://127.0.0.1:9501/wsdebug
 
-->调试效果
+>调试效果
 ![img](http://static.firstphp.com/WSDEBUG-WX20191106-152056.png)
 
 >鸣谢
