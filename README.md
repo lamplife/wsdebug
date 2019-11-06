@@ -44,9 +44,18 @@ Router::addServer('ws', function () {
 <?php
 namespace App\HttpController;
 
+use Hyperf\Di\Annotation\Inject;
 use Firstphp\Wsdebug\Wsdebug;
 
-......
+
+class TestContrller 
+{
+
+    /**
+     * @Inject
+     * @var Wsdebug
+     */
+    protected $debug;
 
 	public function test()
 		$userData = [
@@ -55,8 +64,15 @@ use Firstphp\Wsdebug\Wsdebug;
 		];
 		$this->debug->send($userData);
 	}
+}
 
 ```
+
+>访问调试地址
+http://127.0.0.1:9501/wsdebug
+
+->调试效果
+![img](http://static.firstphp.com/WSDEBUG-WX20191106-152056.png)
 
 >鸣谢
 [韩博文](https://github.com/easy-swoole/wsdebug)
