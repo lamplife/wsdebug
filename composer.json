@@ -2,7 +2,7 @@
     "name": "firstphp/wsdebug",
     "type": "library",
     "license": "MIT",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "authors": [
         {
             "name": "狂奔的蚂蚁",
@@ -11,7 +11,9 @@
     ],
     "keywords": [
         "php",
-        "hyperf"
+        "swoole",
+        "hyperf",
+        "wsdebug"
     ],
     "description": "wsdebug for hyperf",
     "autoload": {
