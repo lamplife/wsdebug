@@ -18,7 +18,7 @@
 
 
 ## 使用方法：
->1.通过自定义路由 Router 添加输出页面
+>1. 通过自定义路由 Router 添加输出页面
 
 编辑路由文件 /hyperf/config/routes.php ，添加如下内容：
 
@@ -34,7 +34,7 @@ Router::addServer('ws', function () {
 });
 ```
 
->2.Hyperf Demo
+>2. Hyperf Demo
 ```php
 <?php
 namespace App\HttpController;
@@ -51,6 +51,7 @@ class TestContrller
 	protected $debug;
 
 	public function test()
+	{
 		$userData = [
 		    'uid' => 1,
 		    'username' => 'wsdebug',
@@ -60,7 +61,7 @@ class TestContrller
 }
 ```
 
->3.访问调试地址
+>3. 访问调试地址
 http://127.0.0.1:9501/wsdebug
 
 ![img](http://static.firstphp.com/WSDEBUG-WX20191106-152056.png)
