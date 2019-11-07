@@ -46,7 +46,7 @@ namespace App\HttpController;
 use Hyperf\Di\Annotation\Inject;
 use Firstphp\Wsdebug\Wsdebug;
 
-class TestContrller 
+class TestController 
 {
     /**
      * @Inject
