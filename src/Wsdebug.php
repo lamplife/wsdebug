@@ -34,7 +34,7 @@ class Wsdebug implements OnMessageInterface, OnOpenInterface, OnCloseInterface
     public function __construct()
     {
         $config = config('wsdebug') ?? '';
-        $this->host = isset($config['wshost']) && $config['wshost'] ? $config['wshost'] : 'ws://127.0.0.1:9501';
+        $this->host = isset($config['wshost']) && $config['wshost'] ? $config['wshost'] : 'ws://127.0.0.1:9505';
         $container = \Hyperf\Utils\ApplicationContext::getContainer();
         $wsFactory = $container->get(\Hyperf\WebSocketServer\Server::class);
         $this->server = $wsFactory->getServer();

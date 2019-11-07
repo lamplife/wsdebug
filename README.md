@@ -4,18 +4,15 @@
 ## 安装组件:
 >composer require firstphp/wsdebug
 
+## 安装 WebSocket 服务:
+>[详见 Hyperf 官方文档](https://doc.hyperf.io/#/zh/websocket-server)
 
 ## 发布配置:
 >php bin/hyperf.php vendor:publish firstphp/wsdebug
 
-
-## 安装 WebSocket 服务:
->[详见 Hyperf 官方文档](https://doc.hyperf.io/#/zh/websocket-server)
-
-
 ## 注意事项：
->配置文件发布后，默认地址是 ws://127.0.0.1:9505 ，需修改成实际配置地址
-
+>配置文件路径：/web/hyperf/config/autoload/wsdebug.php
+>默认地址是 ws://127.0.0.1:9505 ，需修改成服务实际配置地址
 
 ## 使用方法：
 >1.通过自定义路由 Router 添加输出页面
