@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Wsdebug for Hyperf
+ *
+ * Author: 狂奔的螞蟻 <www.firstphp.com>
+ * Date: 2019/11/6
+ * Time: 11:11 AM
+ */
 
 namespace Firstphp\Wsdebug;
 
