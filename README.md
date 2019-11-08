@@ -48,10 +48,10 @@ use Firstphp\Wsdebug\Wsdebug;
 
 class TestController 
 {
-    /**
-     * @Inject
-     * @var Wsdebug
-     */
+   /**
+    * @Inject()
+    * @var Wsdebug
+    */
 	protected $debug;
 
 	public function test()
