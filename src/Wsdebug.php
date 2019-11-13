@@ -12,6 +12,7 @@ namespace Firstphp\Wsdebug;
 use Hyperf\Contract\OnCloseInterface;
 use Hyperf\Contract\OnMessageInterface;
 use Hyperf\Contract\OnOpenInterface;
+use Hyperf\Utils\Str;
 use Swoole\Http\Request;
 use Swoole\Server;
 use Swoole\WebSocket\Frame;
