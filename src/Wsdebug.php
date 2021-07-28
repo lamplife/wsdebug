@@ -52,7 +52,7 @@ class Wsdebug implements OnMessageInterface, OnOpenInterface, OnCloseInterface
      * @param WebSocketServer $server
      * @param Frame $frame
      */
-    public function onMessage(WebSocketServer $server, Frame $frame): void
+    public function onMessage($server, Frame $frame): void
     {
         $type = 'info';
         if ($frame->data == 'pong') {
@@ -67,7 +67,7 @@ class Wsdebug implements OnMessageInterface, OnOpenInterface, OnCloseInterface
      * @param int $fd
      * @param int $reactorId
      */
-    public function onClose(Server $server, int $fd, int $reactorId): void
+    public function onClose($server, int $fd, int $reactorId): void
     {
         echo "ws server $fd closed\n";
     }
@@ -77,7 +77,7 @@ class Wsdebug implements OnMessageInterface, OnOpenInterface, OnCloseInterface
      * @param WebSocketServer $server
      * @param Request $request
      */
-    public function onOpen(WebSocketServer $server, Request $request): void
+    public function onOpen($server, Request $request): void
     {
         $server->push($request->fd, json_encode(['type' => 'open']));
     }
